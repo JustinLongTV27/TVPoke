@@ -95,7 +95,7 @@ class SelectedPokeImage(Image):
 
 class BackButton(Image):
     def __init__(self):
-        super().__init__((45, 85), 10, 10, './imgs/BackButton.png')
+        super().__init__((20, 85), 10, 10, './imgs/bkBttn.png')
 
     def onClick(self, screen):
         screen.state["pageNum"] -= 1
@@ -103,7 +103,7 @@ class BackButton(Image):
 
 class ForwardButton(Image):
     def __init__(self):
-        super().__init__((45, 85), 10, 10, './imgs/ForwardButton.png')
+        super().__init__((30, 85), 10, 10, './imgs/fwdBttn.png')
 
     def onClick(self, screen):
         screen.state["pageNum"] += 1
