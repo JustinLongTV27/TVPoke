@@ -24,8 +24,3 @@ class BattleScreen(Screen):
                 x += 100/4
                 self.elements.append(Image((x, y), 20, 20, poke.img))
                 self.elements.append(Label((x, y + 10), 20, 10, poke.name))
-                
-
-
-
-
