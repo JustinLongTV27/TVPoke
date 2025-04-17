@@ -11,16 +11,16 @@ class BattleScreen(Screen):
             Trainer(trainer1Poke),
             Trainer(trainer2Poke)
         ]
+        self.aciveTrainer = self.trainers[0]
         
     def elementsToDisplay(self):
         self.elements = []
 
         for trainer in self.trainers:
-            trainer.getPageElements()
+            self.elements.extend(trainer.getPageElements())
 
-        aciveTrainer = self.trainers[0]
         for trainer in self.trainers:
-            if aciveTrainer == trainer:
+            if self.aciveTrainer == trainer:
                 trainer.postion = 1
             else:
                 trainer.position = 2
@@ -30,14 +30,14 @@ class BattleScreen(Screen):
         else:
             self.activeTrainer = self.trainers[0]
 
-                
-        
-        
-        
-        
-        
-        
-        
+
+
+class BattleButtons(Button):
+    def __init__(self, position, width, height, text):
+        super().__init__(position, width, height, text)
+
+
+
         #y = 0
         ##two rows of three
         #for trainer in self.trainers:

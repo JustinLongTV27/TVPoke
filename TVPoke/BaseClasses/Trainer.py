@@ -17,9 +17,9 @@ class Trainer:
     def getPageElements(self):
         elements = []
 
-        pokeHealth = self.pokemon.hp
-        pokeName = self.pokemon.name
-        pokeImg = self.pokemon.imgPath
+        pokeHealth = self.pokemon[0].hp
+        pokeName = self.pokemon[0].name
+        pokeImg = self.pokemon[0].imgPath
 
         if self.position == 1:
             pokeX = 25
@@ -35,5 +35,6 @@ class Trainer:
 
             healthLabel = Label((pokeX, pokeY), 20, 10, pokeName + "Enemy HP: " + pokeHealth)
             thePokemon = Image((pokeX, pokeY), 20, 20, pokeImg)
-            elements.append(healthLabel)
-            elements.append(thePokemon)
+        
+        elements.append(healthLabel)
+        elements.append(thePokemon)
