@@ -27,7 +27,7 @@ class Trainer:
             pokeY = 25
             
             healthLabel = Label((pokeX, pokeY + 10), 20, 10, pokeName + "Your HP: " + str(pokeHealth))
-            thePokemon = Image((pokeX, pokeY), 20, 20, pokeImg)
+            thePokemon = Image((pokeX, pokeY), 40, 40, pokeImg)
             elements.append(healthLabel)
             elements.append(thePokemon)
         else:
