@@ -14,7 +14,9 @@ class BattleScreen(Screen):
         self.activeTrainer = self.trainers[0]
         
     def elementsToDisplay(self):
-        self.elements = []
+        self.elements = [
+            BackRound(),
+        ]
 
         for trainer in self.trainers:
             if trainer == self.activeTrainer:
@@ -45,8 +47,8 @@ class BattleButtons(Button):
 
 
 class BackRound(Image):
-    def __init__(self, position, width, height, img):
-        super().__init__(position, width, height, img)
+    def __init__(self):
+        super().__init__((50, 50), 100, 100, "./imgs/pokeBK.png")
 
         #y = 0
         ##two rows of three
