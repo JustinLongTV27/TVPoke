@@ -13,42 +13,66 @@ class BattleScreen(Screen):
         ]
         self.activeTrainer = self.trainers[0]
         
+        for trainer in self.trainers:
+            if trainer == self.activeTrainer:
+                trainer.position = 1
+            else:
+                trainer.position = 2
+        
     def elementsToDisplay(self):
         self.elements = [
             BackRound(),
         ]
 
         for trainer in self.trainers:
-            if trainer == self.activeTrainer:
+            self.elements.extend(trainer.getPageElements())
+
+        for i, move in enumerate(self.activeTrainer.pokemon[0].moves):
+            x = 60 (i % 2) * 20
+            y = 10 (i // 2) * 20
+
+            
+
+
+class BattleButtons(Button):
+    def __init__(self, centerXY, move):
+        super().__init__(centerXY, 15, 20, (0, 0, 0), (255, 255, 255))
+        self.move = move
+        self.text = self.move.name
+
+    def onClick(self, screen):
+        print("you clicked on: " + self.move.name)
+        print("You did: " + str(self.move.power) + " Damage!")
+        for trainer in screen.trainers:
+            if trainer != screen.activeTrainer:
+                trainer.pokemon[0].takeDamage(self.move.power)
+                trainer.removeFaintedPokemon()
+            else:
+                pass
+        screen.activeTrainer.removeFaintedPokemon()
+
+        if screen.acrtiveTrainer == screen.trainers[0]:
+            screen.activeTrainer = screen.trainers[1]
+        else:
+            screen.activeTrainer = screen.trainers[0]
+
+        for trainer in screen.trainers:
+            if trainer == screen.activeTrainer:
                 trainer.position = 1
             else:
                 trainer.position = 2
 
-        for trainer in self.trainers:
-            self.elements.extend(trainer.getPageElements())
-
-        for trainer in self.trainers:
-            if self.activeTrainer == trainer:
-                trainer.postion = 1
-            else:
-                trainer.position = 2
-
-        if self.activeTrainer == self.trainers[0]:
-            self.activeTrianer = self.trainers[1]
-        else:
-            self.activeTrainer = self.trainers[0]
 
 
 
-class BattleButtons(Button):
-    def __init__(self, position, width, height, text, imgPath):
-        super().__init__(position, width, height, text)
-        self.imgPath = imgPath
 
 
 class BackRound(Image):
     def __init__(self):
         super().__init__((50, 50), 100, 100, "./imgs/pokeBK.png")
+
+    def onClick(self, screen):
+        print("")
 
         #y = 0
         ##two rows of three

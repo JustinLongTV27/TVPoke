@@ -20,6 +20,7 @@ while True: ##Game loop
         pokemonList1 = selectScreen.state["selectedPoke"][0]
         pokemonList2 = selectScreen.state["selectedPoke"][1]
         battleScreen.addTrainers(pokemonList1, pokemonList2)
+        selectScreen.state["goTo"] = ""
         screen = battleScreen
 
 
