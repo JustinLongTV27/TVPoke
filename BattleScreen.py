@@ -28,15 +28,16 @@ class BattleScreen(Screen):
             self.elements.extend(trainer.getPageElements())
 
         for i, move in enumerate(self.activeTrainer.pokemon[0].moves):
-            x = 60 (i % 2) * 20
-            y = 10 (i // 2) * 20
+            x = 75 + (i % 2) * 15
+            y = 10 + (i // 2) * 15
+            self.elements.append(BattleButtons((x, y), move))
 
             
 
 
 class BattleButtons(Button):
     def __init__(self, centerXY, move):
-        super().__init__(centerXY, 15, 20, (0, 0, 0), (255, 255, 255))
+        super().__init__(centerXY, 15, 20, (255, 255, 255), (0, 0, 0))
         self.move = move
         self.text = self.move.name
 
@@ -45,13 +46,13 @@ class BattleButtons(Button):
         print("You did: " + str(self.move.power) + " Damage!")
         for trainer in screen.trainers:
             if trainer != screen.activeTrainer:
-                trainer.pokemon[0].takeDamage(self.move.power)
+                trainer.pokemon[0].takeDamage(self.move)
                 trainer.removeFaintedPokemon()
             else:
                 pass
         screen.activeTrainer.removeFaintedPokemon()
 
-        if screen.acrtiveTrainer == screen.trainers[0]:
+        if screen.activeTrainer == screen.trainers[0]:
             screen.activeTrainer = screen.trainers[1]
         else:
             screen.activeTrainer = screen.trainers[0]
