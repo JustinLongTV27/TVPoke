@@ -5,6 +5,11 @@ from PyUI.PageElements import *
 class BattleScreen(Screen):
     def __init__(self, window):
         super().__init__(window, (25, 255, 40))
+        self.state = {
+            "goTo" : ""
+        }
+        self.loser = ""
+        self.winner = ""
 
     def addTrainers(self, trainer1Poke, trainer2Poke):
         self.trainers = [
@@ -18,19 +23,38 @@ class BattleScreen(Screen):
                 trainer.position = 1
             else:
                 trainer.position = 2
+
+        self.trainers[0].name = "Player 1"
+        self.trainers[1].name = "Player 2"
+    
+    def checkLoser(self):
+        for trainer in self.trainers:
+            if len(trainer.pokemon) == 0:
+                self.loser = trainer.name
+                for  guy in self.trainers:
+                    if guy != trainer:
+                        self.winner = guy.name
+                        self.state["goTo"] = "WIN"
+                break
+                
         
     def elementsToDisplay(self):
         self.elements = [
             BackRound(),
         ]
 
+        self.checkLoser()
+
         for trainer in self.trainers:
             self.elements.extend(trainer.getPageElements())
 
-        for i, move in enumerate(self.activeTrainer.pokemon[0].moves):
-            x = 75 + (i % 2) * 15
-            y = 10 + (i // 2) * 15
-            self.elements.append(BattleButtons((x, y), move))
+        if self.loser != "":
+            pass
+        else:
+            for i, move in enumerate(self.activeTrainer.pokemon[0].moves):
+                x = 75 + (i % 2) * 15
+                y = 10 + (i // 2) * 15
+                self.elements.append(BattleButtons((x, y), move))
 
             
 
