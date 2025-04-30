@@ -9,4 +9,4 @@ class Nukemon(Normal):
             Move("Steel shockwave", "FIRE", 999),
             Move("Divine fire ball", "FIRE", 999)
         ]
-        super().__init__("Rules set by God", 999, moves, "./TVPoke/Pokemon/imgs/Nukemon.png")
+        super().__init__("Nukemon", 999, moves, "./TVPoke/Pokemon/imgs/Nukemon.png")
